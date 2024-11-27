@@ -1,118 +1,161 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import {StripeTerminalProvider} from '@stripe/stripe-terminal-react-native';
+import React, {useEffect, useMemo, useReducer} from 'react';
+import {useStripeTerminal} from '@stripe/stripe-terminal-react-native';
+import {Provider} from 'react-redux';
+import {store} from './source/redux/store';
+import {Keyboard, LogBox, StatusBar} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import AuthNavigation from './source/navigation/authNavigation';
+import SplashScreen from 'react-native-splash-screen';
+import {lightColors} from './source/styles/variables';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {AuthContext} from './source/utils/authContext';
+import {axiosInstance} from './source/config/setupAxios';
+import {endPoint, showToast} from './source/utils/commonUtils';
+import HomeNavigation from './source/navigation/homeNavigation';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+LogBox.ignoreAllLogs(true);
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const App = () => {
+  const token = '144|IT4xULMpIxycG1Bau9RVGBghj9qtqNa1HLQjgcJ4f1eb9b5e'; 
+  const {initialize} = useStripeTerminal();
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+  useEffect(() => {
+    console.log("clear");
+    
+    initialize();
+  }, [initialize]);
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+  useEffect(() => {
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 1500);
+  }, []);
+
+  const appUser = async () => {
+    let userToken = await AsyncStorage.getItem('Verify_Token');
+    console.log('token', userToken);
+    let initialRoute = 'App';
+    dispatch({
+      type: 'RESTORE_TOKEN',
+      token: userToken,
+      initialRoute,
+    });
+  };
+  React.useEffect(() => {
+    appUser();
+  }, []);
+  const [state, dispatch] = useReducer(
+    (prevstate: any, action: any) => {
+      switch (action.type) {
+        case 'RESTORE_TOKEN':
+          return {
+            ...prevstate,
+            userToken: action.token,
+            initialRoute: action.initialRoute,
+            isLoading: false,
+          };
+        case 'USERLOGIN':
+          return {
+            ...prevstate,
+            isSignout: false,
+            userToken: action.data.token,
+            initialRoute: action.data.initialRoute,
+          };
+
+        case 'SIGNOUT':
+          return {
+            ...prevstate,
+            userToken: null,
+            isSignout: true,
+            isLoading: false,
+          };
+      }
+    },
+    {
+      isLoading: true,
+      userToken: null,
+      initialRoute: 'Login',
+    },
   );
-}
+  const authContext = useMemo(
+    () => ({
+      userloginAction: async (requestData: any, setLoading: any) => {
+        axiosInstance
+          .post(endPoint.login, requestData)
+          .then(async res => {
+            if (res.data.status == 'success') {
+              setLoading(false);
+              const user_token = res?.data?.data?.token;
+              await AsyncStorage.setItem('Verify_Token', user_token);
+              let initialRoute = 'App';
+              dispatch({
+                type: 'USERLOGIN',
+                data: {token: user_token, initialRoute},
+              });
+              showToast(res?.data?.message);
+            } else {
+              setLoading(false);
+            }
+            Keyboard.dismiss();
+          })
+          .catch(error => {
+            showToast(error.message);
+            setLoading(false);
+          });
+      },
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+      signoutAction: async () => {
+        await AsyncStorage.removeItem('Verify_Token');
+        AsyncStorage.clear();
+        dispatch({
+          type: 'SIGNOUT',
+        });
+      },
+    }),
+    [],
+  );
+  // This function will return a Promise<string> which is expected by the StripeTerminalProvider
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  const fetchTokenProvider = async () => {
+    console.log('initialize', initialize);
+
+    const response = await fetch(
+      `https://uat.splitsum.co/api/stripe/device/connection-token`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`, // Send token in headers if needed
+        },
+      },
+    );
+    const {data} = await response.json();
+    console.log('connectionToken', data);
+
+    const {secret_token} = data;
+    return secret_token;
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <StripeTerminalProvider
+      logLevel="verbose"
+      tokenProvider={fetchTokenProvider}>
+      <Provider store={store}>
+        <AuthContext.Provider value={{...authContext, ...state}}>
+          <NavigationContainer>
+            <StatusBar
+              barStyle="light-content"
+              hidden={false}
+              backgroundColor={lightColors.blue}
+              translucent={true}
+            />
+            {state?.userToken == null ? <AuthNavigation /> : <HomeNavigation />}
+          </NavigationContainer>
+        </AuthContext.Provider>
+      </Provider>
+    </StripeTerminalProvider>
   );
-}
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+};
 
 export default App;

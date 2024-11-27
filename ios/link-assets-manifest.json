@@ -1,0 +1,41 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "source/assets/fonts/AlbertSans-Bold.ttf",
+      "sha1": "c2879d03d48355192739c3bd60e38834861c33f9"
+    },
+    {
+      "path": "source/assets/fonts/AlbertSans-Regular.ttf",
+      "sha1": "17813e4886d2da95f62f25ce40eb94e35856b513"
+    },
+    {
+      "path": "source/assets/fonts/AlbertSans-SemiBold.ttf",
+      "sha1": "f01e57b3b2848ef566da68540ee3fdd9d817edfb"
+    },
+    {
+      "path": "source/assets/fonts/LexendDeca-Bold.ttf",
+      "sha1": "7ee129b4ba6b0eafef748040d48b7979429f149e"
+    },
+    {
+      "path": "source/assets/fonts/LexendDeca-Regular.ttf",
+      "sha1": "68dad5183767d1ebf077be1ddb622a7586f28384"
+    },
+    {
+      "path": "source/assets/fonts/LexendDeca-SemiBold.ttf",
+      "sha1": "f79ea2615b597db5e10776fb1889b783283aeffc"
+    },
+    {
+      "path": "source/assets/fonts/Rubik-Bold.ttf",
+      "sha1": "0b3d2153576f8ec576af1c89e4793a3dcf0ebb0c"
+    },
+    {
+      "path": "source/assets/fonts/Rubik-Regular.ttf",
+      "sha1": "9d7091d63f35c9d28518b06566442a02b306980a"
+    },
+    {
+      "path": "source/assets/fonts/Rubik-SemiBold.ttf",
+      "sha1": "01a4b4fee8dbf9802ccb6256fdf53b3a86f2fcec"
+    }
+  ]
+}

@@ -13,8 +13,17 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		231292017FA844BA99F55F50 /* LexendDeca-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D478AE43414D06A65BFC09 /* LexendDeca-Regular.ttf */; };
+		42D0763ECFC749E2B87D1F76 /* Rubik-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2882698329FA4C1282F82DC6 /* Rubik-SemiBold.ttf */; };
+		5B02EBB9DF1847FCB5435FB8 /* AlbertSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACFFADD0FAFC468A81DEB2AD /* AlbertSans-Regular.ttf */; };
+		73FAB77219F6484BB58DAC64 /* LexendDeca-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB56F0634C1A4B2D92BBD2E1 /* LexendDeca-Bold.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-Splitsum-SplitsumTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-Splitsum-SplitsumTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		9A36071B0F214233A6D38B59 /* AlbertSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A776E364A49A47FA8F7F065B /* AlbertSans-SemiBold.ttf */; };
+		BCDD13AF7DF94BE6AA4E22F6 /* AlbertSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8441E0725AF14C1A89E680CB /* AlbertSans-Bold.ttf */; };
+		DE732008A4334C89ADBCEF31 /* LexendDeca-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0081AE7A729044769505C31A /* LexendDeca-SemiBold.ttf */; };
+		FB7A71BEEB044618A5C797CC /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8DDCCC1DDCE47E49FEA0652 /* Rubik-Regular.ttf */; };
+		FEE78422D4344A44B49203C7 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D774B42A1084FC6ACFF20B8 /* Rubik-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0081AE7A729044769505C31A /* LexendDeca-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "LexendDeca-SemiBold.ttf"; path = "../source/assets/fonts/LexendDeca-SemiBold.ttf"; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* SplitsumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SplitsumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* SplitsumTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SplitsumTests.m; sourceTree = "<group>"; };
@@ -39,13 +49,21 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Splitsum/main.m; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = Splitsum/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-Splitsum-SplitsumTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Splitsum-SplitsumTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D774B42A1084FC6ACFF20B8 /* Rubik-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Bold.ttf"; path = "../source/assets/fonts/Rubik-Bold.ttf"; sourceTree = "<group>"; };
+		2882698329FA4C1282F82DC6 /* Rubik-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-SemiBold.ttf"; path = "../source/assets/fonts/Rubik-SemiBold.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-Splitsum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitsum.debug.xcconfig"; path = "Target Support Files/Pods-Splitsum/Pods-Splitsum.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-Splitsum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitsum.release.xcconfig"; path = "Target Support Files/Pods-Splitsum/Pods-Splitsum.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-Splitsum-SplitsumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitsum-SplitsumTests.debug.xcconfig"; path = "Target Support Files/Pods-Splitsum-SplitsumTests/Pods-Splitsum-SplitsumTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-Splitsum.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Splitsum.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		68D478AE43414D06A65BFC09 /* LexendDeca-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "LexendDeca-Regular.ttf"; path = "../source/assets/fonts/LexendDeca-Regular.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Splitsum/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8441E0725AF14C1A89E680CB /* AlbertSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "AlbertSans-Bold.ttf"; path = "../source/assets/fonts/AlbertSans-Bold.ttf"; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-Splitsum-SplitsumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitsum-SplitsumTests.release.xcconfig"; path = "Target Support Files/Pods-Splitsum-SplitsumTests/Pods-Splitsum-SplitsumTests.release.xcconfig"; sourceTree = "<group>"; };
+		A776E364A49A47FA8F7F065B /* AlbertSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "AlbertSans-SemiBold.ttf"; path = "../source/assets/fonts/AlbertSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		ACFFADD0FAFC468A81DEB2AD /* AlbertSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "AlbertSans-Regular.ttf"; path = "../source/assets/fonts/AlbertSans-Regular.ttf"; sourceTree = "<group>"; };
+		EB56F0634C1A4B2D92BBD2E1 /* LexendDeca-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "LexendDeca-Bold.ttf"; path = "../source/assets/fonts/LexendDeca-Bold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F8DDCCC1DDCE47E49FEA0652 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Regular.ttf"; path = "../source/assets/fonts/Rubik-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +127,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		713BA60C8E934FA7A80F74E8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8441E0725AF14C1A89E680CB /* AlbertSans-Bold.ttf */,
+				ACFFADD0FAFC468A81DEB2AD /* AlbertSans-Regular.ttf */,
+				A776E364A49A47FA8F7F065B /* AlbertSans-SemiBold.ttf */,
+				EB56F0634C1A4B2D92BBD2E1 /* LexendDeca-Bold.ttf */,
+				68D478AE43414D06A65BFC09 /* LexendDeca-Regular.ttf */,
+				0081AE7A729044769505C31A /* LexendDeca-SemiBold.ttf */,
+				1D774B42A1084FC6ACFF20B8 /* Rubik-Bold.ttf */,
+				F8DDCCC1DDCE47E49FEA0652 /* Rubik-Regular.ttf */,
+				2882698329FA4C1282F82DC6 /* Rubik-SemiBold.ttf */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +160,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				713BA60C8E934FA7A80F74E8 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -247,6 +283,15 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				07BBB2875B32E8CCF51D63DF /* PrivacyInfo.xcprivacy in Resources */,
+				BCDD13AF7DF94BE6AA4E22F6 /* AlbertSans-Bold.ttf in Resources */,
+				5B02EBB9DF1847FCB5435FB8 /* AlbertSans-Regular.ttf in Resources */,
+				9A36071B0F214233A6D38B59 /* AlbertSans-SemiBold.ttf in Resources */,
+				73FAB77219F6484BB58DAC64 /* LexendDeca-Bold.ttf in Resources */,
+				231292017FA844BA99F55F50 /* LexendDeca-Regular.ttf in Resources */,
+				DE732008A4334C89ADBCEF31 /* LexendDeca-SemiBold.ttf in Resources */,
+				FEE78422D4344A44B49203C7 /* Rubik-Bold.ttf in Resources */,
+				FB7A71BEEB044618A5C797CC /* Rubik-Regular.ttf in Resources */,
+				42D0763ECFC749E2B87D1F76 /* Rubik-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
