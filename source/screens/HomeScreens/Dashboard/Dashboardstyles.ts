@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { darkColors, fontFamily, fontSize, lightColors, responsiveHeight, responsiveWidth } from "../../../styles/variables";
+import { borderRadius, darkColors, fontFamily, fontSize, lightColors, responsiveHeight, responsiveWidth } from "../../../styles/variables";
 
 export const styles = StyleSheet.create({
     maincontainer:{flex:1,backgroundColor:darkColors.white},
@@ -16,17 +16,14 @@ export const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'space-between',
       padding: 20,
-      borderWidth: 1,
       margin: 20,
-      borderRadius: 10,
-      borderColor: '#F4ECF7',
+      borderRadius: borderRadius.semiLarge,
+      elevation:2,backgroundColor:darkColors.white
     },
-    pressedBox: {
-      backgroundColor: '#B7EB6F',
-    },
+ 
     paymentLogo: {
-      width: 50,
-      height: 50,
+      width: responsiveHeight(5),
+      height: responsiveHeight(5),
     },
     paymentTitle: {
       fontSize: fontSize.large,

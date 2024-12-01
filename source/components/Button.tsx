@@ -73,7 +73,7 @@ const Buttons: React.FC<btnProps> = ({
       disabled={disabled}>
       {needLoading ? (
         <ActivityIndicator
-          size="large"
+          size="small"
           color={loaderColor ? loaderColor : darkColors.white}
         />
       ) : (
@@ -91,8 +91,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 30,
-    //   height: Platform.OS == 'ios' ? responsiveHeight(6) : responsiveHeight(6.5),
+    padding: 20,
   },
   text: {
     fontFamily: fontFamily.R_bold,

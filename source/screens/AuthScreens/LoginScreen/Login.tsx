@@ -4,7 +4,9 @@ import {
   Image,
   ImageBackground,
   Keyboard,
+  Linking,
   PermissionsAndroid,
+  Platform,
   SafeAreaView,
   Text,
   TextInput,
@@ -22,6 +24,8 @@ import {
 } from '../../../styles/variables';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {AuthContext} from '../../../utils/authContext';
+import {PERMISSIONS, RESULTS, check, request} from 'react-native-permissions';
+import NfcManager from 'react-native-nfc-manager';
 
 const Login = () => {
   const navigation: any = useNavigation();
@@ -31,7 +35,9 @@ const Login = () => {
     password: '',
   });
   const [loading, setLoading] = useState(false);
-  const [userAccessLocaion, setUserAccessLocaion] = useState(false);
+  const [userAccessLocation, setUserAccessLocation] = useState(false);
+  const [userAccessNfc, setuserAcessNfc] = useState(false);
+
   const [iserror, setIserror] = useState(false);
 
   useFocusEffect(
@@ -41,38 +47,92 @@ const Login = () => {
     }, [navigation]),
   );
 
-  async function init() {
+  const checkAndEnablePermissions = async () => {
     try {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-        {
-          title: 'Location Permission',
-          message: 'Stripe Terminal needs access to your location',
-          buttonPositive: 'Accept',
-        },
-      );
-      console.log(
-        PermissionsAndroid.RESULTS.GRANTED,
-        'PermissionsAndroid.RESULTS.GRANTED',
-      );
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        setUserAccessLocaion(true);
+      // Android or iOS NFC Check
+      const nfcSupported = await NfcManager.isSupported();
+      if (nfcSupported) {
+        const nfcEnabled: any = await NfcManager.isEnabled();
+        if (!nfcEnabled) {
+          Alert.alert(
+            'NFC Disabled',
+            'Please enable NFC in your device settings.',
+            [
+              {text: 'Cancel', style: 'cancel'},
+              {text: 'Open Settings', onPress: () => Linking.openSettings()},
+            ],
+          );
+        } else {
+          setuserAcessNfc(true);
+        }
       } else {
-        setUserAccessLocaion(false);
-        Alert.alert(
-          'Location services are required in order to connect to a reader.',
-        );
+        Alert.alert('NFC Not Supported', 'Your device does not support NFC.');
       }
-    } catch {}
-  }
 
-  useEffect(() => {
-    if (!userAccessLocaion) {
-      init();
+      // Location Permission
+      if (Platform.OS === 'android') {
+        const locationGranted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+          {
+            title: 'Location Permission',
+            message: 'Stripe Terminal needs access to your location.',
+            buttonPositive: 'Accept',
+          },
+        );
+
+        if (locationGranted !== PermissionsAndroid.RESULTS.GRANTED) {
+          Alert.alert(
+            'Location Permission Denied',
+            'Location services are required to connect to a reader.',
+            [
+              {text: 'Cancel', style: 'cancel'},
+              {text: 'Open Settings', onPress: () => Linking.openSettings()},
+            ],
+          );
+        } else {
+          setUserAccessLocation(true);
+        }
+      } else if (Platform.OS === 'ios') {
+        const locationStatus = await check(
+          PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
+        );
+        if (locationStatus === RESULTS.GRANTED) {
+          setUserAccessLocation(true);
+        } else if (locationStatus === RESULTS.DENIED) {
+          const requestStatus = await request(
+            PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
+          );
+          if (requestStatus !== RESULTS.GRANTED) {
+            Alert.alert(
+              'Location Permission Denied',
+              'Location services are required to connect to a reader.',
+              [
+                {text: 'Cancel', style: 'cancel'},
+                {text: 'Open Settings', onPress: () => Linking.openSettings()},
+              ],
+            );
+          }
+        } else if (locationStatus === RESULTS.BLOCKED) {
+          Alert.alert(
+            'Permission Blocked',
+            'Please enable location services in Settings.',
+            [
+              {text: 'Cancel', style: 'cancel'},
+              {text: 'Open Settings', onPress: () => Linking.openSettings()},
+            ],
+          );
+        }
+      }
+    } catch (error) {
+      console.error('Error checking permissions:', error);
     }
-  }, [userAccessLocaion]);
+  };
+  useEffect(() => {
+    if (!userAccessLocation || !userAccessNfc) {
+      checkAndEnablePermissions();
+    }
+  }, [userAccessLocation,userAccessNfc]);
   const handleSubmit = async () => {
-   
     setLoading(true);
     if (!userDetails?.email && !userDetails?.password) {
       setLoading(false);

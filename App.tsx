@@ -17,14 +17,7 @@ import HomeNavigation from './source/navigation/homeNavigation';
 LogBox.ignoreAllLogs(true);
 
 const App = () => {
-  const token = '144|IT4xULMpIxycG1Bau9RVGBghj9qtqNa1HLQjgcJ4f1eb9b5e'; 
-  const {initialize} = useStripeTerminal();
-
-  useEffect(() => {
-    console.log("clear");
-    
-    initialize();
-  }, [initialize]);
+ 
 
   useEffect(() => {
     setTimeout(() => {
@@ -107,6 +100,9 @@ const App = () => {
 
       signoutAction: async () => {
         await AsyncStorage.removeItem('Verify_Token');
+        await AsyncStorage.removeItem('locationMockID');
+        await AsyncStorage.removeItem('cardReaders')
+
         AsyncStorage.clear();
         dispatch({
           type: 'SIGNOUT',
@@ -118,7 +114,6 @@ const App = () => {
   // This function will return a Promise<string> which is expected by the StripeTerminalProvider
 
   const fetchTokenProvider = async () => {
-    console.log('initialize', initialize);
 
     const response = await fetch(
       `https://uat.splitsum.co/api/stripe/device/connection-token`,
@@ -126,7 +121,7 @@ const App = () => {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`, // Send token in headers if needed
+          Authorization: `Bearer ${state.userToken}`, // Send token in headers if needed
         },
       },
     );

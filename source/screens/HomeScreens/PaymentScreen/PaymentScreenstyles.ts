@@ -66,10 +66,10 @@ export const styles = StyleSheet.create({
     color: lightColors.black,
   },
   amountContainer: {
-    width: responsiveWidth(40),
+    width: responsiveWidth(50),
     alignSelf: 'center',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
     flexDirection: 'row',
   },
   currencySymbol: {
@@ -78,10 +78,11 @@ export const styles = StyleSheet.create({
     color: lightColors.grey,
   },
   amountInput: {
+    // borderWidth:1, 
     fontFamily: fontFamily.R_regular,
-    fontSize: 80,
+    fontSize: 42,
     color: lightColors.black,
-    alignSelf: 'center',
+    alignSelf: 'center',textAlign:"center"
   },
   cancelButtonContainer: {
     position: 'absolute',
